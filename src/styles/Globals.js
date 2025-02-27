@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const MainBody = styled.div `
     background-color: ${({theme}) => theme.colors.primary};
 `
@@ -11,11 +12,18 @@ export const Container = styled.div`
 `
 
 export const PaddingContainer = styled.div`
-    padding-top: ${({top}) => top};
-    padding-bottom: ${({bottom}) => bottom};
-    padding-left: ${({left}) => left};
-    padding-right: ${({right}) => right};
-`
+  padding-top: ${({ top }) => top};
+  padding-bottom: ${({ bottom }) => bottom};
+  padding-left: ${({ left }) => left};
+  padding-right: ${({ right }) => right};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding-top: ${({ responsiveTop }) => responsiveTop};
+    padding-bottom: ${({ responsiveBottom }) => responsiveBottom};
+    padding-left: ${({ responsiveLeft }) => responsiveLeft};
+    padding-right: ${({ responsiveRight }) => responsiveRight};
+  }
+`;
 
 export const FlexContainer = styled.div`
     display: flex;
@@ -26,6 +34,12 @@ export const FlexContainer = styled.div`
 
     & > div {
         flex: ${({fullWidthChild}) => fullWidthChild && 1};
+    }
+
+    @media(max-width:${({theme}) => theme.breakpoints.mobile}){
+        display: ${({responsiveFlex}) => responsiveFlex ? 'flex' : 'block'};
+
+        direction: ${({responsiveDirection}) => responsiveDirection};
     }
 `
 
@@ -50,6 +64,27 @@ export const Heading = styled(PaddingContainer)`
                 return;       
             }
     }};
+
+    @media(max-width:${({theme}) => theme.breakpoints.mobile}){
+        font-size: ${({size}) => {
+        switch(size){
+            case 'h1':
+                return '2.5rem';
+
+            case 'h2':
+                return '2rem';
+        
+            case 'h3':
+                return '1.5rem';
+        
+            case 'h4':
+                return '1rem';
+            
+            default:
+                return;       
+            }
+    }};
+    }
 `
 export const BlueText = styled.span`
     color: ${({theme}) => theme.colors.secondary};
@@ -74,4 +109,31 @@ export const IconContainer = styled.div`
         }
     }};
 `
+export const Link = styled.a`
+   display: inline-block;
+   width: max-content;
+   padding: 1rem 2rem;
+   color:${({theme}) => theme.colors.white};
+   background-color:${({theme}) => theme.colors.primary_light};
+   border: 1px solid ${({theme}) => theme.colors.gray};
+   border-radius: 5px;
+   cursor: pointer;
+   transition: all 0.3s ease;
 
+   &&:hover{
+    color: ${({theme}) => theme.colors.primary_light};
+    background-color: ${({theme}) => theme.colors.white};
+   }
+`
+export const FadeImg = styled.img`
+    position: absolute;
+    top: ${({top}) => top};
+    right: ${({right}) => right};
+    left: ${({left}) => left};
+    bottom: ${({bottom}) => bottom};
+    z-index: 0;
+
+    @media(max-width: ${({theme}) => theme.breakpoints.mobile}){
+        display: none;
+    }
+`

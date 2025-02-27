@@ -4,6 +4,7 @@ export const theme = {
         primary_light: '#131c31',
         secondary: '#7eadfc',
         white: '#fff',
+        gray: '#808080',
         black: '#000',
         para_text_color: '#dcdcdc'
     },
